@@ -1,0 +1,109 @@
+/* ---------- Base Styles ---------- */
+body {
+  font-family: Arial, sans-serif;
+  background: #0d1117;
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.container {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* vertical center line */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #444;
+  transform: translateX(-50%);
+}
+
+/* each changelog block */
+.changelog-entry {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+/* alternate sides */
+.changelog-entry:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.changelog-entry:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* dot beside each entry */
+.changelog-entry::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  width: 14px;
+  height: 14px;
+  background: #888;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 2;
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* position dots on correct side */
+.changelog-entry:nth-child(odd)::before {
+  right: -9px;
+}
+
+.changelog-entry:nth-child(even)::before {
+  left: -9px;
+}
+
+/* hover glow effect */
+.changelog-entry:hover::before {
+  background: #fff;
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.6);
+}
+
+/* headings and list spacing */
+.changelog-entry h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #58a6ff;
+}
+
+.changelog-entry ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+  color: #ddd;
+}
+
+/* ---------- Mobile view ---------- */
+@media (max-width: 600px) {
+  .container::before {
+    left: 20px;
+  }
+
+  .changelog-entry {
+    width: 100%;
+    padding-left: 50px;
+    text-align: left !important;
+  }
+
+  .changelog-entry::before {
+    left: 14px;
+  }
+}
